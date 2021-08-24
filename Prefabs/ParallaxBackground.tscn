@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2( 1000, 500 )

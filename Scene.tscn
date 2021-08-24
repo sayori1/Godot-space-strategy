@@ -1,0 +1,618 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://addons/carmel4a97.RTS_Camera2D/RTS-Camera2D.gd" type="Script" id=1]
+[ext_resource path="res://Prefabs/Star.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Fonts/NotoSerif-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Scripts/Popups/Fleet.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Fight.gd" type="Script" id=5]
+[ext_resource path="res://Images/circleFilled.png" type="Texture" id=6]
+[ext_resource path="res://Prefabs/Bullets/Explosion.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Images/Colony/landscape.png" type="Texture" id=8]
+[ext_resource path="res://Scripts/Colony.gd" type="Script" id=9]
+[ext_resource path="res://Images/GUI/Forward_BTN.png" type="Texture" id=10]
+[ext_resource path="res://Images/GUI/Table_01.png" type="Texture" id=11]
+[ext_resource path="res://Fonts/Autobus-Bold.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://Images/GUI/Window.png" type="Texture" id=13]
+[ext_resource path="res://Images/GUI/Close_BTN.png" type="Texture" id=14]
+[ext_resource path="res://Images/GUI/Price_BTN_Table.png" type="Texture" id=15]
+[ext_resource path="res://Scripts/Popups/Alert.gd" type="Script" id=16]
+[ext_resource path="res://Scripts/Popups/Building.gd" type="Script" id=17]
+
+[sub_resource type="DynamicFont" id=1]
+size = 15
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 25
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=7]
+font_data = ExtResource( 12 )
+
+[node name="Scene" type="Node2D"]
+
+[node name="Star" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2966.36, 4491.86 )
+
+[node name="Star2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1974.36, 867.026 )
+
+[node name="Star3" parent="." instance=ExtResource( 2 )]
+position = Vector2( -4169.65, 1186.3 )
+
+[node name="Star4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 5543.11, -2000 )
+
+[node name="Star5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 7949.68, 1813.8 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+script = ExtResource( 1 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="StarInfo" type="NinePatchRect" parent="UI"]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -106.0
+texture = ExtResource( 11 )
+patch_margin_left = 28
+patch_margin_top = 20
+patch_margin_right = 30
+patch_margin_bottom = 24
+
+[node name="Info" type="Label" parent="UI/StarInfo"]
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 240.0
+custom_fonts/font = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Journal" type="TextureRect" parent="UI"]
+visible = false
+margin_right = 394.0
+margin_bottom = 511.0
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Info" type="Label" parent="UI/Journal"]
+anchor_left = 0.0532995
+anchor_top = 0.0410959
+anchor_right = 0.944162
+anchor_bottom = 0.943249
+custom_fonts/font = SubResource( 2 )
+text = "fgsdgdfsgfg"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Tween" type="Tween" parent="UI/Journal"]
+
+[node name="Actions" type="VBoxContainer" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -64.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TurnButton" type="TextureButton" parent="UI/Actions"]
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+texture_normal = ExtResource( 10 )
+expand = true
+stretch_mode = 4
+
+[node name="Template" type="TextureButton" parent="UI/Actions"]
+visible = false
+margin_top = 68.0
+margin_right = 64.0
+margin_bottom = 98.0
+rect_min_size = Vector2( 64, 30 )
+texture_normal = ExtResource( 11 )
+expand = true
+
+[node name="Label" type="Label" parent="UI/Actions/Template"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 3 )
+text = "fsdaf"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Popup" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fleet" type="TextureRect" parent="UI/Popup"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -207.0
+margin_top = -177.5
+margin_right = 207.0
+margin_bottom = 177.5
+texture = ExtResource( 13 )
+expand = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ships" type="VBoxContainer" parent="UI/Popup/Fleet"]
+anchor_left = 0.036232
+anchor_top = 0.152113
+anchor_right = 0.966186
+anchor_bottom = 0.898593
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Template" type="CheckBox" parent="UI/Popup/Fleet/Ships"]
+visible = false
+margin_right = 385.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 3 )
+text = "Ship"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="UI/Popup/Fleet/Ships/Template"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.054902, 0.054902, 0.054902, 0.262745 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="TextureButton" parent="UI/Popup/Fleet"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = -30.0
+margin_right = 32.0
+rect_min_size = Vector2( 64, 30 )
+texture_normal = ExtResource( 11 )
+expand = true
+
+[node name="Label" type="Label" parent="UI/Popup/Fleet/Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 3 )
+text = "Send"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Close" type="TextureButton" parent="UI/Popup/Fleet"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -44.9991
+margin_right = 0.000854492
+margin_bottom = 41.0
+texture_normal = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Alert" type="TextureRect" parent="UI/Popup"]
+visible = false
+anchor_left = 0.307617
+anchor_top = 0.0741667
+anchor_right = 0.692383
+anchor_bottom = 0.925833
+margin_top = 3.8147e-06
+texture = ExtResource( 11 )
+expand = true
+stretch_mode = 3
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Info" type="Label" parent="UI/Popup/Alert"]
+anchor_left = 0.0406091
+anchor_top = 0.0254403
+anchor_right = 0.959391
+anchor_bottom = 0.953033
+custom_fonts/font = SubResource( 4 )
+text = "OK"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button" type="TextureButton" parent="UI/Popup/Alert"]
+anchor_left = 0.370558
+anchor_top = 0.8591
+anchor_right = 0.629442
+anchor_bottom = 0.953033
+rect_min_size = Vector2( 64, 30 )
+texture_normal = ExtResource( 15 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="UI/Popup/Alert/Button"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -51.0
+margin_top = -48.0
+margin_right = 51.0
+custom_fonts/font = SubResource( 3 )
+text = "OK"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Info" type="Label" parent="UI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -302.0
+margin_right = 302.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 5 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fight" type="Control" parent="UI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+explosion = ExtResource( 7 )
+
+[node name="BG" type="ColorRect" parent="UI/Fight"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.552941, 0.552941, 0.552941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ships" type="HBoxContainer" parent="UI/Fight"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -91.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Template" type="VBoxContainer" parent="UI/Fight/Ships"]
+visible = false
+margin_right = 64.0
+margin_bottom = 91.0
+
+[node name="Icon" type="TextureButton" parent="UI/Fight/Ships/Template"]
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+texture_normal = ExtResource( 6 )
+expand = true
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="UI/Fight/Ships/Template"]
+margin_top = 68.0
+margin_right = 64.0
+margin_bottom = 91.0
+custom_fonts/font = SubResource( 6 )
+text = "fasdfasd"
+
+[node name="Popup" type="AcceptDialog" parent="UI/Fight"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -107.5
+margin_top = -75.0
+margin_right = 107.5
+margin_bottom = 75.0
+window_title = "Result"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Colony" type="Control" parent="UI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bg" type="TextureRect" parent="UI/Colony"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Actions" type="VBoxContainer" parent="UI/Colony"]
+anchor_bottom = 1.0
+margin_right = 136.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Template" type="TextureButton" parent="UI/Colony/Actions"]
+visible = false
+margin_right = 136.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 64, 50 )
+texture_normal = ExtResource( 15 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="UI/Colony/Actions/Template"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 3 )
+text = "Build"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="NinePatchRect" parent="UI/Colony"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -399.0
+margin_bottom = 295.0
+texture = ExtResource( 11 )
+patch_margin_left = 19
+patch_margin_top = 18
+patch_margin_right = 18
+patch_margin_bottom = 17
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sliders" type="VBoxContainer" parent="UI/Colony/Panel"]
+anchor_left = 0.0300752
+anchor_top = 0.0508475
+anchor_right = 0.97995
+anchor_bottom = 0.308475
+margin_top = 9.53674e-07
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="S1" type="HSlider" parent="UI/Colony/Panel/Sliders"]
+margin_right = 379.0
+margin_bottom = 16.0
+max_value = 10000.0
+rounded = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Colony/Panel/Sliders/S1"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -85.0
+margin_right = 85.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 7 )
+text = "Borning"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="S2" type="HSlider" parent="UI/Colony/Panel/Sliders"]
+margin_top = 20.0
+margin_right = 379.0
+margin_bottom = 36.0
+max_value = 10000.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Colony/Panel/Sliders/S2"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -85.0
+margin_right = 85.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 7 )
+text = "Earning"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="S3" type="HSlider" parent="UI/Colony/Panel/Sliders"]
+margin_top = 40.0
+margin_right = 379.0
+margin_bottom = 56.0
+max_value = 10000.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Colony/Panel/Sliders/S3"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -85.0
+margin_right = 85.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 7 )
+text = "Working"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="S4" type="HSlider" parent="UI/Colony/Panel/Sliders"]
+margin_top = 60.0
+margin_right = 379.0
+margin_bottom = 76.0
+max_value = 10000.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Colony/Panel/Sliders/S4"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -85.0
+margin_right = 85.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 7 )
+text = "Science"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Info" type="Label" parent="UI/Colony/Panel"]
+anchor_left = 0.0325815
+anchor_top = 0.338983
+anchor_right = 0.9599
+anchor_bottom = 0.949153
+custom_fonts/font = SubResource( 7 )
+text = "Status"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Building" type="TextureRect" parent="UI/Colony/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -207.0
+margin_top = -177.5
+margin_right = 207.0
+margin_bottom = 177.5
+texture = ExtResource( 13 )
+expand = true
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buildings" type="VBoxContainer" parent="UI/Colony/Panel/Building"]
+anchor_left = 0.036232
+anchor_top = 0.152113
+anchor_right = 0.966186
+anchor_bottom = 0.898593
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Template" type="CheckBox" parent="UI/Colony/Panel/Building/Buildings"]
+visible = false
+margin_right = 385.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 3 )
+text = "Ship"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="UI/Colony/Panel/Building/Buildings/Template"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.054902, 0.054902, 0.054902, 0.262745 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="TextureButton" parent="UI/Colony/Panel/Building"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = -30.0
+margin_right = 32.0
+rect_min_size = Vector2( 64, 30 )
+texture_normal = ExtResource( 11 )
+expand = true
+
+[node name="Label" type="Label" parent="UI/Colony/Panel/Building/Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 3 )
+text = "Send"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Close" type="TextureButton" parent="UI/Colony/Panel/Building"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -44.9991
+margin_right = 0.000854492
+margin_bottom = 41.0
+texture_normal = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

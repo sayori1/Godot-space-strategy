@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Images/circleFilled.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Star.gd" type="Script" id=2]
+[ext_resource path="res://Images/selected.png" type="Texture" id=3]
+[ext_resource path="res://Images/circle.png" type="Texture" id=4]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+void fragment(){
+	float d = distance(vec2(0.5), UV);
+	float k = pow((1.0 - d)/0.9,10.0);
+	COLOR.rgb = vec3(k);
+	COLOR.a = k;
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 72.759
+
+[node name="Star" type="Sprite"]
+self_modulate = Color( 1, 0.576471, 0.443137, 1 )
+material = SubResource( 3 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="Planet" type="Sprite" parent="."]
+modulate = Color( 0.72549, 1, 0.572549, 1 )
+position = Vector2( 10.22, 14.9515 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 1 )
+offset = Vector2( 1275.15, 835.359 )
+
+[node name="Planet2" type="Sprite" parent="."]
+modulate = Color( 0.72549, 1, 0.572549, 1 )
+position = Vector2( -3.25523, 5.96796 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 1 )
+offset = Vector2( 681.205, 257.686 )
+
+[node name="Selected" type="Sprite" parent="."]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 3 )
+
+[node name="TargetArea" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="TargetArea"]
+shape = SubResource( 1 )

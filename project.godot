@@ -1,0 +1,70 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Reference",
+"class": "Building",
+"language": "GDScript",
+"path": "res://Scripts/Models/Building.gd"
+}, {
+"base": "Reference",
+"class": "Fraction",
+"language": "GDScript",
+"path": "res://Scripts/Models/Fraction.gd"
+}, {
+"base": "Reference",
+"class": "Ship",
+"language": "GDScript",
+"path": "res://Scripts/Models/Ship.gd"
+}, {
+"base": "Sprite",
+"class": "ShipFly",
+"language": "GDScript",
+"path": "res://Scripts/ShipFly.gd"
+}, {
+"base": "Reference",
+"class": "Star",
+"language": "GDScript",
+"path": "res://Scripts/Models/Star.gd"
+}, {
+"base": "Reference",
+"class": "Utils",
+"language": "GDScript",
+"path": "res://Scripts/Utils.gd"
+} ]
+_global_script_class_icons={
+"Building": "",
+"Fraction": "",
+"Ship": "",
+"ShipFly": "",
+"Star": "",
+"Utils": ""
+}
+
+[autoload]
+
+Global="*res://Scripts/Global.gd"
+Journal="*res://Scripts/Journal.gd"
+
+[input]
+
+ui_click={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[rendering]
+
+environment/default_clear_color=Color( 0, 0, 0, 1 )
